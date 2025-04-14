@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Single_Chemical_Report" pageWidth="1200" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="1050" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="66c15d07-c0a4-4d43-9d0c-76d4e2c15869">
+	<parameter name="preferredName" class="java.lang.String"/>
+	<parameter name="dtxsid" class="java.lang.String"/>
+	<parameter name="workflow" class="java.lang.String"/>
+	<parameter name="casrn" class="java.lang.String"/>
+	<parameter name="workflowTitle" class="java.lang.String"/>
+	<parameter name="sessionKey" class="java.lang.String"/>
+	<parameter name="timeZone" class="java.lang.String"/>
+	<parameter name="username" class="java.lang.String"/>
+	<parameter name="safetyLink" class="java.lang.String"/>
+    <parameter name="landscapeReportUrl" class="java.lang.String"/>
+	<parameter name="hazardSuperCategories" class="java.util.List" nestedType="gov.epa.ccte.api.rapidtox.sessionreport.SuperCategory"/>
+	<parameter name="hazardSelections" class="java.util.List" nestedType="java.lang.Integer"/>
+	<parameter name="selectedHazardData" class="java.util.List" nestedType="gov.epa.ccte.api.rapidtox.sessionreport.ReportRequest"/>
+	<parameter name="customData" class="java.util.List"/>
+    <parameter name="hazardStudyAvailableData" class="java.util.List"/>
+	<parameter name="physchemSelections" class="java.util.List"/>
+	<parameter name="physchemFilterSelections" class="java.util.List"/>
+	<parameter name="envfateFilterSelections" class="java.util.List"/>
+    <parameter name="bioactivitySummary" class="java.util.List"/>
+	<parameter name="toxcastSelections" class="java.util.List"/>
+	<parameter name="analogueSelections" class="gov.epa.ccte.api.rapidtox.sessionreport.ReportAnalogueDetails"/>
+	<parameter name="noStructureImage" class="java.awt.image.BufferedImage"/>
+	<parameter name="reportRequest" class="gov.epa.ccte.api.rapidtox.sessionreport.ReportRequest"/>
+	<parameter name="reportInformation" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="physchemSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="envfateSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="odorThresholdSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="hazardReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="hazardDetailReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="toxSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="podSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="customHazardToxReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="customHazardPodReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="customPODDataReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="analogueSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="toxcastSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+    <parameter name="bioactivitySummarySubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+    <parameter name="isBioactivitySummaryDataPresent" class="java.lang.Boolean" />
+	<parameter name="berSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="uncertainitySubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="uncertainitySubReportSec" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="hazardPodSecReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="bioactivityPodSecReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="analoguePodSecReport" class="net.sf.jasperreports.engine.JasperReport"/>
+    <parameter name="inVivoToxicityOralScatterPlot" class="java.awt.image.BufferedImage" />
+    <parameter name="inVivoToxicityInhalationScatterPlot" class="java.awt.image.BufferedImage" />
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="REPORT_PAGE" class="java.lang.Integer" incrementType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Prevent"/>
+	</background>
+	<title>
+		<band height="700" splitType="Immediate">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="50" width="1200" height="40" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RapidTox " + $P{workflowTitle} + " Workflow Report"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" hyperlinkType="Reference">
+				<reportElement x="0" y="95" width="1200" height="40" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preferredName} + " (DTXSID: "+$P{dtxsid}+" | CASRN: "+$P{casrn}+")"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="140" width="1200" height="40" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Session Report ID: " + ($P{sessionKey})]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="Reference">
+				<reportElement positionType="Float" x="0" y="185" width="1200" height="37" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isUnderline=\"true\" forecolor=\"blue\">"+"Click here to download the landscape report"+"</style>"]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA[$P{landscapeReportUrl}]]></hyperlinkReferenceExpression>
+			</textField>
+			<textField isBlankWhenNull="true" hyperlinkType="Reference">
+				<reportElement positionType="Float" x="0" y="225" width="1200" height="37" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{safetyLink}.isEmpty() ? null : "<style isUnderline=\"true\" forecolor=\"blue\">"+"Click here to download the safety report"+"</style>"]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA[$P{safetyLink}.isEmpty() ? null : $P{safetyLink}]]></hyperlinkReferenceExpression>
+			</textField>
+			<image hAlign="Center" onErrorType="Blank">
+				<reportElement x="450" y="265" width="300" height="300" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[gov.epa.ccte.api.rapidtox.util.JasperHelper.isImage(CONCATENATE("https://comptox.epa.gov/dashboard-api/ccdapp1/chemical-files/image/by-dtxsid/",$P{dtxsid}))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[CONCATENATE("https://comptox.epa.gov/dashboard-api/ccdapp1/chemical-files/image/by-dtxsid/",$P{dtxsid})]]></imageExpression>
+			</image>
+			<image hAlign="Center" onErrorType="Blank">
+				<reportElement x="450" y="265" width="300" height="300" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[!gov.epa.ccte.api.rapidtox.util.JasperHelper.isImage(CONCATENATE("https://comptox.epa.gov/dashboard-api/ccdapp1/chemical-files/image/by-dtxsid/",$P{dtxsid}))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{noStructureImage}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="110" splitType="Immediate">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="98" width="1150" height="1" uuid="06a4b276-3ee6-4cb3-b935-334f837f9203"/>
+			</line>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="40" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RapidTox " + $P{workflowTitle} + " Workflow Report"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="45" width="1200" height="40" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preferredName} + " (DTXSID: "+$P{dtxsid}+" | CASRN: "+$P{casrn}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="550" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="550" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="dtxsid">
+					<subreportParameterExpression><![CDATA[$P{dtxsid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="workflowTitle">
+					<subreportParameterExpression><![CDATA[$P{workflowTitle}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{reportInformation}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="801ecc33-bf03-4329-8b7b-8eba98b48b94"/>
+				<subreportParameter name="dtxsid">
+					<subreportParameterExpression><![CDATA[$P{dtxsid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="physchemFilterSelections">
+					<subreportParameterExpression><![CDATA[$P{physchemFilterSelections}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="physchemSelections">
+					<subreportParameterExpression><![CDATA[$P{physchemSelections}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hasPhyschemData">
+					<subreportParameterExpression><![CDATA[gov.epa.ccte.api.rapidtox.util.JasperHelper.getHasData("Physchem", $P{reportRequest}) ? true : false]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{physchemSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="801ecc33-bf03-4329-8b7b-8eba98b48b94"/>
+				<subreportParameter name="dtxsid">
+					<subreportParameterExpression><![CDATA[$P{dtxsid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="envfateFilterSelections">
+					<subreportParameterExpression><![CDATA[$P{envfateFilterSelections}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="physchemSelections">
+					<subreportParameterExpression><![CDATA[$P{physchemSelections}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hasEnvData">
+					<subreportParameterExpression><![CDATA[gov.epa.ccte.api.rapidtox.util.JasperHelper.getHasData("Env", $P{reportRequest}) ? true : false]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{envfateSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="dtxsid">
+					<subreportParameterExpression><![CDATA[$P{dtxsid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{odorThresholdSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="hazardData">
+					<subreportParameterExpression><![CDATA[$P{selectedHazardData}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="detailReport">
+					<subreportParameterExpression><![CDATA[$P{hazardDetailReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{hazardSuperCategories})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{hazardReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="75" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="75" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="dtxsidList">
+					<subreportParameterExpression><![CDATA[$P{analogueSelections}.getDtxsidList()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="podIdsList">
+					<subreportParameterExpression><![CDATA[$P{analogueSelections}.getPodIdsList()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="justifications">
+					<subreportParameterExpression><![CDATA[$P{analogueSelections}.getPodJustifications()]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{analogueSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="75" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="801ecc33-bf03-4329-8b7b-8eba98b48b94"/>
+                <subreportParameter name="isBioactivitySummaryDataPresent">
+                    <subreportParameterExpression><![CDATA[$P{isBioactivitySummaryDataPresent}]]></subreportParameterExpression>
+                </subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{bioactivitySummary})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{bioactivitySummarySubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="801ecc33-bf03-4329-8b7b-8eba98b48b94"/>
+				<subreportParameter name="dtxsid">
+					<subreportParameterExpression><![CDATA[$P{dtxsid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="toxcastSelections">
+					<subreportParameterExpression><![CDATA[$P{toxcastSelections}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hasToxcastData">
+					<subreportParameterExpression><![CDATA[gov.epa.ccte.api.rapidtox.util.JasperHelper.getHasData("Toxcast", $P{reportRequest}) ? true : false]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{toxcastSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20" splitType="Immediate">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="20" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="reportRequest">
+					<subreportParameterExpression><![CDATA[$P{reportRequest}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hasBerData">
+					<subreportParameterExpression><![CDATA[gov.epa.ccte.api.rapidtox.util.JasperHelper.getHasData("BER", $P{reportRequest}) ? true : false]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(gov.epa.ccte.api.rapidtox.util.JasperHelper.getBerList($P{reportRequest}))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{berSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="550" splitType="Prevent">
+			<printWhenExpression><![CDATA[$P{inVivoToxicityOralScatterPlot} != null]]></printWhenExpression>
+			<staticText>
+				<reportElement x="50" y="0" width="1000" height="50" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[*All other values with units other than mg/kg-day are available in the accompanied table above]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="50" width="1000" height="500" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[$P{inVivoToxicityOralScatterPlot} != null]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{inVivoToxicityOralScatterPlot}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="50" width="1000" height="500" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[$P{inVivoToxicityOralScatterPlot} == null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No In Vivo Toxicity Oral data available]]></text>
+			</staticText>
+		</band>
+		<band height="550" splitType="Prevent">
+			<printWhenExpression><![CDATA[$P{inVivoToxicityInhalationScatterPlot} != null]]></printWhenExpression>
+			<staticText>
+				<reportElement x="50" y="0" width="1000" height="50" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[*All other values with units other than mg/m^3 are available in the accompanied table above]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="50" width="1000" height="500" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[$P{inVivoToxicityInhalationScatterPlot} != null]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{inVivoToxicityInhalationScatterPlot}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="50" width="1000" height="500" uuid="f81bbe92-5aa8-437a-ba1f-ebf680c43da1">
+					<printWhenExpression><![CDATA[$P{inVivoToxicityInhalationScatterPlot} == null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No In Vivo Toxicity Inhalation data available]]></text>
+			</staticText>
+		</band>
+        <band height="250" splitType="Immediate">
+			<subreport>
+				<reportElement x="-20" y="0" width="1160" height="250" uuid="8cf19b83-e514-435d-aec3-5879d717d59f"/>
+				<subreportParameter name="uncertainitySubReportSec">
+					<subreportParameterExpression><![CDATA[$P{uncertainitySubReportSec}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reportRequest">
+					<subreportParameterExpression><![CDATA[$P{reportRequest}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(gov.epa.ccte.api.rapidtox.util.JasperHelper.getUncertainityList($P{reportRequest}, $P{dtxsid}))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{uncertainitySubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="112">
+			<textField evaluationTime="Master">
+				<reportElement x="1000" y="60" width="110" height="30" uuid="ccec8aef-96b8-49db-aa2e-3a2fba737d99"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{MASTER_CURRENT_PAGE} +" of " +$V{MASTER_TOTAL_PAGES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="130" y="60" width="40" height="30" uuid="9dd7af06-9f76-42d0-8331-32c3b46b006d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="60" width="130" height="30" uuid="00a1af66-8538-4b30-95ac-383274820d96"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="60" width="70" height="30" uuid="00a1af66-8538-4b30-95ac-383274820d96"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{timeZone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="60" width="400" height="30" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report Generated By: " + $P{username}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

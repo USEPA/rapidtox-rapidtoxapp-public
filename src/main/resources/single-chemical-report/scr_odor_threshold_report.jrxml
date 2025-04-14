@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="1200" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="1050" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7a15a84-6181-4edd-815a-f57ddfd4b84f">
+	<parameter name="dtxsid" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT dtxsid,
+	odor,
+	odor_threshold
+FROM rapidtox.odor_thresholds
+WHERE 
+      odor_threshold is not null and
+	  $X{EQUAL,rapidtox.odor_thresholds.dtxsid,dtxsid}]]>
+	</queryString>
+	<field name="dtxsid" class="java.lang.String"/>
+	<field name="odor" class="java.lang.String"/>
+	<field name="odor_threshold" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="64" splitType="Immediate">
+			<staticText>
+				<reportElement x="0" y="20" width="1200" height="44" forecolor="#030303" uuid="bec0df91-cea3-45d8-9653-2bf4ce872634"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Odor Threshold]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Prevent">
+			<line>
+				<reportElement x="0" y="21" width="1145" height="1" forecolor="#666666" uuid="76a4f02a-1939-4adb-a80f-ade48cdd9b5e"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="140" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="f1ec8c6b-5045-489a-b929-1294f22d6e5a"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DTXSID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="1" width="290" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="14c17cce-3d97-44df-96b3-91af45cc1968"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Odor	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="1" width="715" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="b85591c9-6a05-4048-9ded-b4e963516c40">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Odor Threshold]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Prevent">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="21" width="1145" height="1" uuid="0fc51044-5cf8-49f5-a47a-870cc49e0c69"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="140" height="20" uuid="c330f25b-2248-4027-9b94-ee5daa9168c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8068e9bd-a68a-4bc1-b1f0-c55bc13e9959"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtxsid}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="140" y="0" width="290" height="20" uuid="bfeb2357-dbf7-4608-8223-afe6c035073f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="19ca0820-a746-425f-bbe1-7c9faf1c6970"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{odor} != null ? $F{odor} : "-"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="430" y="0" width="715" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{odor_threshold} != null ? $F{odor_threshold} : '-']]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<noData>
+		<band height="23" splitType="Immediate">
+			<staticText>
+				<reportElement x="0" y="0" width="500" height="23" uuid="8401d6cf-1a2a-43cc-8e84-da2c5d12c48d"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[No Odor Threshold Values Located]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport whenNoDataType="NoDataSection" xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="1200" pageHeight="842" columnWidth="1050" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7a15a84-6181-4edd-815a-f57ddfd4b84f">
+    <parameter name="dtxsid" class="java.lang.String"/>
+    <parameter name="physchemSelections" class="java.util.List"/>
+    <parameter name="envfateFilterSelections" class="java.util.List"/>
+    <parameter name="hasEnvData"  class="java.lang.Boolean"/>
+    <queryString language="SQL">
+        <![CDATA[SELECT dtxsid,
+	preferred_name,
+	property,
+	unit,
+	env_fate_ind,
+	exp_mean,
+	exp_median,
+	exp_min,
+	exp_max,
+	pred_mean,
+	pred_median,
+	pred_min,
+	pred_max
+FROM rapidtox.physchem_summary
+WHERE
+	  $X{EQUAL,rapidtox.physchem_summary.dtxsid,dtxsid} AND $X{IN,rapidtox.physchem_summary.property,envfateFilterSelections} AND $X{IN,rapidtox.physchem_summary.id,physchemSelections}]]>
+    </queryString>
+    <field name="property" class="java.lang.String"/>
+    <field name="unit" class="java.lang.String"/>
+    <field name="exp_mean" class="java.lang.Double"/>
+    <field name="exp_median" class="java.lang.Double"/>
+    <field name="exp_min" class="java.lang.Double"/>
+    <field name="exp_max" class="java.lang.Double"/>
+    <field name="pred_mean" class="java.lang.Double"/>
+    <field name="pred_median" class="java.lang.Double"/>
+    <field name="pred_min" class="java.lang.Double"/>
+    <field name="pred_max" class="java.lang.Double"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <pageHeader>
+        <band height="64" splitType="Immediate">
+            <staticText>
+                <reportElement x="0" y="20" width="1200" height="44" forecolor="#030303" uuid="bec0df91-cea3-45d8-9653-2bf4ce872634"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Env/Fate Data]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="36" splitType="Prevent">
+            <line>
+                <reportElement x="0" y="21" width="1145" height="1" forecolor="#666666" uuid="76a4f02a-1939-4adb-a80f-ade48cdd9b5e"/>
+            </line>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="1" width="95" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="f1ec8c6b-5045-489a-b929-1294f22d6e5a">
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Property]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="95" y="1" width="145" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="14c17cce-3d97-44df-96b3-91af45cc1968">
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Exper Avg]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="240" y="1" width="150" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="b85591c9-6a05-4048-9ded-b4e963516c40">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Pred Avg]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="540" y="1" width="185" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="b85591c9-6a05-4048-9ded-b4e963516c40">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Pred Median]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="725" y="1" width="145" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="a11ac2b9-c87a-458c-8f61-b659caa57e28">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Exper Range]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="870" y="1" width="150" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="a11ac2b9-c87a-458c-8f61-b659caa57e28">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Pred Range]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="390" y="1" width="150" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="14c17cce-3d97-44df-96b3-91af45cc1968">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="19ca0820-a746-425f-bbe1-7c9faf1c6970"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Exper Median]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="1020" y="1" width="125" height="30" forecolor="#FFFFFF" backcolor="#515251" uuid="a11ac2b9-c87a-458c-8f61-b659caa57e28">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                    <rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ Unit]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="23" splitType="Prevent">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="21" width="1145" height="1" uuid="0fc51044-5cf8-49f5-a47a-870cc49e0c69"/>
+            </line>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="0" y="0" width="95" height="20" uuid="c330f25b-2248-4027-9b94-ee5daa9168c0">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8068e9bd-a68a-4bc1-b1f0-c55bc13e9959"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{property}]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="95" y="0" width="145" height="20" uuid="bfeb2357-dbf7-4608-8223-afe6c035073f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="19ca0820-a746-425f-bbe1-7c9faf1c6970"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{exp_mean} != null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_mean}) : "-"]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="390" y="0" width="150" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{exp_median} != null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_median}) : "-"]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="240" y="0" width="150" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{pred_mean} != null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_mean}) : "-"]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="540" y="0" width="185" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{pred_median} != null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_median}) : "-"]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="1020" y="0" width="125" height="20" uuid="0c6ef1f5-b293-4911-a92b-6aa28ceef027">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{unit} != null ? $F{unit} : "-"]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="725" y="0" width="145" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[(($F{exp_min} != null && $F{exp_max} != null && $F{exp_min}.equals($F{exp_max})) ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_max})
+				: ($F{exp_min} == null && $F{exp_max} == null) ? "-" : $F{exp_min} == null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_max}) : $F{exp_max} == null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_min})
+				: CONCATENATE(gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_min}),  " to ", gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{exp_max})))]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="870" y="0" width="150" height="20" uuid="c365ce35-a770-4380-b09b-51b8cfa212cb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d0a6da4-1b23-48b1-8168-a8e8dc50b178"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[(($F{pred_min} != null && $F{pred_max} != null && $F{pred_min}.equals($F{pred_max})) ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_max})
+				: ($F{pred_min} == null && $F{pred_max} == null) ? "-" : $F{pred_min} == null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_max}) : $F{pred_max} == null ? gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_min})
+				: CONCATENATE(gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_min}),  " to ", gov.epa.ccte.api.rapidtox.util.JasperHelper.formatDoubleValue($F{pred_max})))]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <noData>
+        <band height="23" splitType="Immediate">
+            <textField>
+                <reportElement x="0" y="0" width="500" height="23"/>
+                <textElement>
+                    <font size="16" isBold="true" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{hasEnvData} == true ? "No Env. Fate Values Selected" : "No Env. Fate Values Located"]]></textFieldExpression>
+            </textField>
+        </band>
+    </noData>
+</jasperReport>

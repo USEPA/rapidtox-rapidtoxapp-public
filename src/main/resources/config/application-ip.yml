@@ -1,0 +1,81 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+
+spring:
+  application:
+    name: rapidtoxapp
+  jackson:
+    serialization:
+      indent-output: true
+  main:
+    url: ${RAPIDTOX_CONNECTION_STRING}
+    username: ${RAPIDTOX_USER}
+    password: ${RAPIDTOX_PASSWORD}
+    type: com.zaxxer.hikari.HikariDataSource
+    allow-circular-references: true
+    #driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: Hikari2
+      auto-commit: false
+      minimum-idle: 2
+  similarity:
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: ${RAPIDTOX_ALT_CONNECTION_STRING}
+    username: ${RAPIDTOX_ALT_USER}
+    password: ${RAPIDTOX_ALT_PASSWORD}
+    allow-circular-references: true
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      #hibernate.default_schema: ccd_app
+# Logging - settings
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: info
+    org.hibernate.SQL: info
+    gov.epa.ccte.api.*: info
+    org.springframework: warn
+
+#Clowder Dataset Ids
+clowder:
+  landscape: 620bcc79e4b039b22c79f875
+  single: 620bcc4ce4b039b22c79f860
+  batch: 620bcc62e4b039b22c79f867
+
+# server
+server:
+  servlet:
+    context-path: /
+  #port: 9300
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+    min-response-size: 1024
+
+# sentry
+sentry:
+  dsn: https://98083f4581cd0bc1c76474a55b0e2c36@ccte-app-monitoring.epa.gov/17
+  # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+  # We recommend adjusting this value in production.
+  traces-sample-rate: 1.0
+  environment: internal-prod    
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================

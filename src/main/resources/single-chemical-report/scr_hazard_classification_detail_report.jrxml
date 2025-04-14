@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hazard_detail_report" pageWidth="1200" pageHeight="842" whenNoDataType="BlankPage" columnWidth="1050" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3dd774d-3861-4ccf-99b5-f1fdfada4b00">
+	<field name="classificationName" class="java.lang.String"/>
+	<field name="availableStudyInformation" class="java.lang.String"/>
+	<background>
+		<band height="55" splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="1030" height="44" forecolor="#030303" uuid="bec0df91-cea3-45d8-9653-2bf4ce872634"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Vivo Study Information Availablity]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="0" width="290" height="33" forecolor="#FFFFFF" backcolor="#515251" uuid="a11ac2b9-c87a-458c-8f61-b659caa57e28">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Vivo Effect Classification]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="580" y="0" width="300" height="33" forecolor="#FFFFFF" backcolor="#515251" uuid="8324219d-b4d9-4bf9-808e-e3f39cf14fde">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed3abeca-b37b-4b43-bfb1-d13bfc7567f0"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.25" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Available Studies?]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Immediate">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="290" y="39" width="590" height="1" uuid="0fc51044-5cf8-49f5-a47a-870cc49e0c69">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="290" y="0" width="290" height="40" uuid="5e061a6f-8ce2-40b3-a773-49d1fc73459f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2bf0cf50-8be3-4d78-b591-8de4b3be0c0c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{classificationName}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="580" y="0" width="300" height="40" uuid="237c0958-7782-4049-88b4-89bf72d4973f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2bf0cf50-8be3-4d78-b591-8de4b3be0c0c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{availableStudyInformation}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="landscape_hazard_report" pageWidth="1200" pageHeight="842" columnWidth="1200" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="66c15d07-c0a4-4d43-9d0c-76d4e2c15869">
+	<parameter name="hazardDetailReport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="hazardData" class="java.util.List" nestedType="gov.epa.ccte.api.rapidtox.domain.hazard.Hazard"/>
+	<field name="categoryName" class="java.lang.String"/>
+	<field name="availableData" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="0" width="1200" height="40" uuid="203ab3fb-aa8c-4340-95ae-491566108188">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="superCategoryHeader">
+					<subreportParameterExpression><![CDATA[$F{categoryName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="superCategoryDataAvailable">
+					<subreportParameterExpression><![CDATA[$F{availableData}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{hazardData})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{hazardDetailReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

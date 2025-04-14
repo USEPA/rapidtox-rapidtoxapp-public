@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport whenNoDataType="NoDataSection" xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hazard_tox_report" pageWidth="1200" pageHeight="842" columnWidth="1050" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3dd774d-3861-4ccf-99b5-f1fdfada4b00">
+	<parameter name="dtxsid" class="java.lang.String"/>
+	<parameter name="workflowTitle" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT preferred_name,
+	casrn,
+	dtxsid,
+	row_number () OVER (ORDER BY preferred_name)
+	FROM rapidtox.chemical_details
+	WHERE $X{EQUAL,rapidtox.chemical_details.dtxsid,dtxsid} ORDER BY preferred_name ASC]]>
+	</queryString>
+	<field name="row_number" class="java.lang.Integer"/>
+	<field name="preferred_name" class="java.lang.String"/>
+	<field name="dtxsid" class="java.lang.String"/>
+	<field name="casrn" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="520" splitType="Immediate">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="25" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BACKGROUND"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="30" width="1150" height="25" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["The RapidTox “" + $P{workflowTitle} + "” workflow is designed to surface and deliver " + $P{workflowTitle} + " relevant to the evaluation of chemicals, where and when available, such as:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="60" width="1150" height="290" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>empirical or predicted physicochemical properties,</li><br><li>environmental fate and transport parameters,</li><br><li>in vivo human epidemiological and/or experimental animal hazard and dose-response data (e.g., existent cancer and non-cancer human health toxicity values; existent candidate dose response summary values),</li><br><li>surrogate DRSV(s) from analogue chemical(s) via structure-activity/read-across, and</li><br><li>in vitro bioactivity-based data converted and contextualized for application to human health assessment.</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="300" width="1150" height="50" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     A RapidTox workflow session report is representative of user-specific selections and may or may not represent the totality of information available for a given chemical at the time the session was run. Each completed workflow session, for a given chemical, results in both a user specific session report and a total data landscape report that entails the totality of relevant a priori existent empirical or predicted data across the workflow modules, for user convenience and historical reporting purposes."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="355" width="1150" height="50" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     The primary objective of the RapidTox " + $P{workflowTitle} + " workflow, and resultant session report, is to provide an expedient path to chemical-specific information that informs human health hazard identification and dose-response assessment associated with chronic and/or subchronic exposure durations. For quantitative dose-response assessment, this session report may contain a combination of existent human health toxicity values and/or dose response summary values (DRSVs), based on extent assessments or reports from sources such as EPA’s IRIS or PPRTV, ATSDR, and CalEPA, among others, when and where available, and/or, user-derived ‘RapidTox Interim Reference Value(s)’ for non-cancer effects or bioactivity-exposure ratios (BER)."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="410" width="1150" height="50" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     A RapidTox session report, or the corresponding total data landscape report, is not intended to be a comprehensive treatise on the chemical or toxicological nature of this substance. Rather the information surfaced and selected by the user contained in a session report is intended to either directly support decision-making under the purview of the user, or, serve as a seminal starting point for development of a more involved health assessment product."]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="150" splitType="Immediate">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="25" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["QUALITY ASSURANCE"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="1150" height="100" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     The RapidTox workflow environment provides information harvested from many existent databases, repositories, and sites/sources, including U.S. Federal and state agencies and institutions and international bodies. Information extracted, assembled and delivered via this platform have undergone various levels of quality assurance review by U.S. EPA data curation staff. However, it is advised that dependent on context of use or decision making, users of the information delivered in this platform consult origin assessments, documents, or sites to confirm as needed.   "]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="200" splitType="Immediate">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="25" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DISCLAIMERS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="1150" height="150" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     The RapidTox session report provides toxicity values (e.g., existent cancer and non-cancer tox values and/or Dose-Response Summary Values [DRSVs]), brief information about the health effects of the chemical, opportunities to identify analogue chemical(s) and associated surrogate toxicity data, and available bioactivity data to identify corresponding administered human dose equivalent-based PODs, when and where data are available. The evidence on which a user-selected value is based, including the strengths and limitations is not provided in the session report. All users are advised to review the information provided in this workflow session report to ensure that the value(s) selected is/are appropriate for the types of exposures and circumstances in question and the decisions that would be supported by the report. U.S. EPA Programs, Regions or States who choose to use values selected in a RapidTox workflow session are advised that EPA/ORD resources will not generally be used to respond to challenges, if any, of quantitative values assembled, derived, and/or applied by a user. This session report has not been reviewed in accordance with U.S. EPA policy or approved for publication; meeting such objectives is the sole responsibility of the user. Mention of trade names or commercial products in the workflow user interface or in a corresponding session report does not constitute endorsement or recommendation for use."]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="100" splitType="Immediate">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="25" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["QUESTIONS REGARDING RAPIDTOX " + $P{workflowTitle}.toUpperCase() + " REPORT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="1150" height="35" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["     Questions regarding the content of this RapidTox " + $P{workflowTitle} + " workflow session report should be directed to the point of contact for RapidTox "]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="Reference">
+				<reportElement x="860" y="27" width="290" height="20" uuid="715f68f0-b6fb-467b-b9ea-838b17c8de8e"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Jason Lambert <style isUnderline=\"true\" forecolor=\"blue\">lambert.jason@epa.gov</style>"]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["mailto:lambert.jason@epa.gov"]]></hyperlinkReferenceExpression>
+			</textField>
+		</band>
+		<band height="500" splitType="Prevent">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="1200" height="20" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["COMMONLY USED ABBREVIATIONS AND ACRONYMS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="25" width="390" height="475" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["αa2u-g alpha 2u-globulin<br> ACGIH American Conference of Governmental<br> Industrial Hygienists<br> AIC Akaike’s information criterion<br> ALD approximate lethal dosage<br> ALT alanine aminotransferase<br> AR androgen receptor<br> AST aspartate aminotransferase<br> atm atmosphere<br> ATSDR Agency for Toxic Substances and Disease Registry<br> BMD benchmark dose<br> BMDL benchmark dose lower confidence limit<br> BMDS Benchmark Dose Software<br> BMR benchmark response<br> BUN blood urea nitrogen<br> BW body weight<br> CA chromosomal aberration<br> CAS Chemical Abstracts Service<br> CASRN Chemical Abstracts Service registry number<br> CBI covalent binding index<br> CHO Chinese hamster ovary (cell line cells)<br> CL confidence limit<br> CNS central nervous system<br> CPHEA Center for Public Health and Environmental Assessment<br> CPN chronic progressive nephropathy<br> CYP450 cytochrome P450<br> DAF dosimetric adjustment factor<br> DEN diethylnitrosamine<br> DMSO dimethylsulfoxide<br> DNA deoxyribonucleic acid<br> EPA Environmental Protection Agency<br> ER estrogen receptor<br> FDA Food and Drug Administration<br> FEV1 forced expiratory volume of 1 second"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="25" width="390" height="475" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["GD gestation day<br> GDH glutamate dehydrogenase<br> GGT γ-glutamyl transferase<br> GSH glutathione<br> GST glutathione-S-transferase<br> Hb/g-A animal blood-gas partition coefficient<br> Hb/g-H human blood-gas partition coefficient<br> HEC human equivalent concentration<br> HED human equivalent dose<br> i.p. intraperitoneal<br> IRIS Integrated Risk Information System<br> IVF in vitro fertilization<br> LC50 median lethal concentration<br> LD50 median lethal dose<br> LOAEL lowest-observed-adverse-effect level<br> MN micronuclei<br> MNPCE micronucleated polychromatic erythrocyte<br> MOA mode of action<br> MTD maximum tolerated dose<br> NAG N-acetyl-β-D-glucosaminidase<br> NCI National Cancer Institute<br> NOAEL no-observed-adverse-effect level<br> NTP National Toxicology Program<br> NZW New Zealand White (rabbit breed)<br> OCT ornithine carbamoyl transferase<br> ORD Office of Research and Development<br> PBPK physiologically based pharmacokinetic<br> PCNA proliferating cell nuclear antigen<br> PND postnatal day<br> DRSV dose response summary value<br> PODADJ duration-adjusted POD<br> QSAR quantitative structure-activity relationship<br>RBC red blood cell<br> RDS replicative DNA synthesis"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="800" y="25" width="390" height="475" uuid="7ba39b90-74ee-4fc6-920a-0cbc9b8ec1a8"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RfC inhalation reference concentration<br> RfD oral reference dose<br> RGDR regional gas dose ratio<br> RNA ribonucleic acid<br> SAR structure-activity relationship<br> SCE sister chromatid exchange<br> SD standard deviation<br> SDH sorbitol dehydrogenase<br> SE standard error<br> SGOT serum glutamic oxaloacetic<br> transaminase, also known as AST<br> SGPT serum glutamic pyruvic transaminase, also known as ALT<br> SSD systemic scleroderma<br> TCA trichloroacetic acid<br> TCE trichloroethylene<br> TWA time-weighted average<br> UF uncertainty factor<br> UFA interspecies uncertainty factor<br> UFC composite uncertainty factor<br> UFD database uncertainty factor<br> UFH intraspecies uncertainty factor<br> UFL LOAEL-to-NOAEL uncertainty factor<br> UFS subchronic-to-chronic uncertainty factor<br> U.S. United States of America<br> WBC white blood cell<br>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,50 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: rapidtoxapp
+  jackson:
+    serialization:
+      indent-output: true
+  main:
+    url: ${RAPIDTOX_CONNECTION_STRING}
+    username: ${RAPIDTOX_USER}
+    password: ${RAPIDTOX_PASSWORD}
+    type: com.zaxxer.hikari.HikariDataSource
+    #driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: Hikari2
+      auto-commit: false
+      minimumIdle: 2
+      maximumPoolSize: 20
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
+  similarity:
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: ${RAPIDTOX_ALT_CONNECTION_STRING}
+    username: ${RAPIDTOX_ALT_USER}
+    password: ${RAPIDTOX_ALT_PASSWORD}
+    hikari:
+      poolName: Hikari1
+      auto-commit: false
+      minimumIdle: 2
+      maximumPoolSize: 20
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
+  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+
+#Clowder Dataset Ids
+clowder:
+  landscape: 620bbbf3e4b039b22c79f6fb
+  single: 620bbbbbe4b039b22c79f6ed
+  batch: 620bbbdbe4b039b22c79f6f4
